@@ -1,1 +1,1 @@
-# Finance-System
+# finance-system
