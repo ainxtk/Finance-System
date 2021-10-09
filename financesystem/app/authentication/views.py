@@ -19,6 +19,11 @@ from app.authentication.utils import account_activation_token
 from django.urls import reverse
 from django.contrib import auth
 
+from rest_framework import viewsets
+
+from .serializers import UserSerializer
+from .models import User
+
 # Create your views here.
 
 
@@ -156,3 +161,8 @@ class LogoutView(View):
         auth.logout(request)
         messages.success(request, 'You have been logged out')
         return redirect('login')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('name')
+    serializer_class = UserSerializer
